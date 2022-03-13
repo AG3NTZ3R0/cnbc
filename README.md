@@ -1,6 +1,6 @@
 # CNBC
 
-A Python package that wraps CNBC API endpoints and returns financial data in JSON format. The API queries business news and live market data to streamline the development of financial applications.
+A Python package that wraps CNBC API endpoints and returns financial data in JSON. The API queries business news and live market data to streamline the development of financial applications.
 <table><tr><td>
 
 #### IMPORTANT LEGAL DISCLAIMER
