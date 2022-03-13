@@ -141,3 +141,28 @@ def get_fundamentals(issue_ids: str, api_key: str):
     response = requests.request("GET", url, headers=headers, params=querystring).json()
 
     return response
+
+
+def get_priceline_chart(issue_id: str, num_of_days: str, api_key: str):
+    """
+    Generate image of price line chart of specific stock quote, index, exchange, etc.
+
+    :param issue_id: The value of the issueId field returned in auto-complete or translate endpoints.
+    :param num_of_days: Number of days to generate image of price line chart (1 to 9999).
+    :param api_key: An API key to CNBC API.
+
+    :return: API response in JSON.
+    """
+    url = "https://cnbc.p.rapidapi.com/symbols/get-priceline-chart"
+    querystring = {
+        "issueId": issue_id,
+        "numberOfDays": num_of_days
+    }
+    headers = {
+        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-key': api_key
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring).json()
+
+    return response
