@@ -1,7 +1,7 @@
 import requests
 
 
-def get_meta_data(api_key: str):
+def get_metadata(api_key: str):
     """
     Get metadata that supports other endpoints.
 
