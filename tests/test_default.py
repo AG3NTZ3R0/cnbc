@@ -11,7 +11,6 @@ class TestDefaultEndpoints(unittest.TestCase):
         """
         json_resp = get_metadata(os.environ.get('RAPID_API_KEY'))
         self.assertEqual(type(json_resp), dict)
-        print(json_resp)
 
 
 if __name__ == '__main__':
