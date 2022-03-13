@@ -95,3 +95,26 @@ def translate(symbol: str, api_key: str):
     response = requests.request("GET", url, headers=headers, params=querystring).json()
 
     return response
+
+
+def get_summary(issue_ids: str, api_key: str):
+    """
+    Get summary information of stock quote, index, exchange, etc.
+
+    :param issue_ids: The value of the issueId field returned in auto-complete or translate endpoints. Separated by comma for multiple values. Ex : 36276,24812378
+    :param api_key: An API key to CNBC API
+
+    :return: API response in JSON
+    """
+    url = "https://cnbc.p.rapidapi.com/symbols/get-summary"
+    querystring = {
+        "issueIds": issue_ids
+    }
+    headers = {
+        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-key': api_key
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring).json()
+
+    return response
