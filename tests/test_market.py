@@ -10,7 +10,7 @@ class TestMarketEndpoints(unittest.TestCase):
         """
         Test that get_metadata is communicating with the CNBC API.
         """
-        json_resp = list_indices(os.environ.get('RAPID_API_KEY'))
+        json_resp = list_indices(api_key=os.environ.get('RAPID_API_KEY'))
         self.assertEqual(type(json_resp), dict)
 
 
