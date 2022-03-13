@@ -14,6 +14,7 @@ def get_meta_data(api_key: str):
         'x-rapidapi-host': "cnbc.p.rapidapi.com",
         'x-rapidapi-key': api_key
     }
+
     response = requests.request("GET", url, headers=headers).json()
 
     return response
