@@ -1,7 +1,7 @@
 import requests
 
 
-def list_indices():
+def list_indices(api_key: str):
     """
     List all available indices.
 
@@ -10,7 +10,7 @@ def list_indices():
     url = "https://cnbc.p.rapidapi.com/market/list-indices"
     headers = {
         'x-rapidapi-host': "cnbc.p.rapidapi.com",
-        'x-rapidapi-key': "d73bb60f82mshbe3e55c57b941abp1abe67jsn7d7492f26dee"
+        'x-rapidapi-key': api_key
     }
 
     response = requests.request("GET", url, headers=headers).json()
