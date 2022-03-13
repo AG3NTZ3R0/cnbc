@@ -82,7 +82,7 @@ json_resp = cnbc.get_fundamentals(issue_ids='36276,24812378',
 Generate image of price line chart of specific stock quote, index, exchange, etc.
 ```python
 json_resp = cnbc.get_priceline_chart(issue_id='24812378',
-                                     num_of_dats='1',
+                                     num_of_days='1',
                                      api_key='YOUR_API_KEY')
 ```
 
