@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.cnbc.news import *
+from src.cnbc import list_trending_news, list_special_reports, list_symbol_news
 
 
 class TestNewsEndpoints(unittest.TestCase):

@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.cnbc.symbol import *
+from src.cnbc import get_earnings_chart, get_profile, get_chart, translate, get_summary, get_fundamentals, get_priceline_chart, get_peers
 
 
 class TestSymbolEndpoints(unittest.TestCase):

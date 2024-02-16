@@ -21,7 +21,7 @@ def get_earnings_chart(issue_id: str, num_of_years: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -44,7 +44,7 @@ def get_profile(issue_id: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -69,7 +69,7 @@ def get_chart(issue_id: str, interval: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -92,7 +92,7 @@ def translate(symbol: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -115,7 +115,7 @@ def get_summary(issue_ids: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -138,7 +138,7 @@ def get_fundamentals(issue_ids: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -163,7 +163,7 @@ def get_priceline_chart(issue_id: str, num_of_days: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -186,6 +186,6 @@ def get_peers(symbol: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response

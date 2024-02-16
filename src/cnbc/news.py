@@ -20,7 +20,7 @@ def list_trending_news(count: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -45,7 +45,7 @@ def list_special_reports(api_key: str, page: str = 1, page_size: str = 25, ):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response
 
@@ -72,6 +72,6 @@ def list_symbol_news(symbol: str, api_key: str, page: str = 1, page_size: str = 
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response

@@ -15,7 +15,7 @@ def get_metadata(api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers).json()
+    response = requests.request("GET", url, headers=headers, timeout=10).json()
 
     return response
 
@@ -38,6 +38,6 @@ def auto_complete(query: str, api_key: str):
         'x-rapidapi-key': api_key
     }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=10).json()
 
     return response

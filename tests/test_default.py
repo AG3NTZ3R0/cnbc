@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.cnbc.default import *
+from src.cnbc import get_metadata, auto_complete
 
 
 class TestDefaultEndpoints(unittest.TestCase):
