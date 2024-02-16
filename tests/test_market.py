@@ -1,8 +1,7 @@
 import os
 import unittest
 
-
-from src.cnbc.market import *
+from src.cnbc import list_indices
 
 
 class TestMarketEndpoints(unittest.TestCase):
