@@ -1,5 +1,7 @@
 import requests
 
+from constants.urls import Urls
+
 
 def list_indices(api_key: str):
     """
@@ -7,9 +9,9 @@ def list_indices(api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/market/list-indices"
+    url = Urls.LIST_INDICES.value
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 

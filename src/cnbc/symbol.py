@@ -1,5 +1,7 @@
 import requests
 
+from constants.urls import Urls
+
 
 def get_earnings_chart(issue_id: str, num_of_years: str, api_key: str):
     """
@@ -11,13 +13,13 @@ def get_earnings_chart(issue_id: str, num_of_years: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-earnings-chart"
+    url = Urls.GET_EARNINGS_CHART.value
     querystring = {
         "issueId": issue_id,
         "numberOfYears": num_of_years
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -35,12 +37,12 @@ def get_profile(issue_id: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-profile"
+    url = Urls.GET_PROFILE.value
     querystring = {
         "issueId": issue_id
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -59,13 +61,13 @@ def get_chart(issue_id: str, interval: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-chart"
+    url = Urls.GET_CHART.value
     querystring = {
         "symbol": issue_id,
         "interval": interval
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -83,12 +85,12 @@ def translate(symbol: str, api_key: str):
 
     :return: API response in JSON
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/translate"
+    url = Urls.TRANSLATE.value
     querystring = {
         "symbol": symbol
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -106,12 +108,12 @@ def get_summary(issue_ids: str, api_key: str):
 
     :return: API response in JSON
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-summary"
+    url = Urls.GET_SUMMARY.value
     querystring = {
         "issueIds": issue_ids
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -129,12 +131,12 @@ def get_fundamentals(issue_ids: str, api_key: str):
 
     :return: API response in JSON
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-fundamentals"
+    url = Urls.GET_FUNDAMENTALS.value
     querystring = {
         "issueIds": issue_ids
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -153,13 +155,13 @@ def get_priceline_chart(issue_id: str, num_of_days: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-priceline-chart"
+    url = Urls.GET_PRICELINE_CHART.value
     querystring = {
         "issueId": issue_id,
         "numberOfDays": num_of_days
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -177,12 +179,12 @@ def get_peers(symbol: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/symbols/get-peers"
+    url = Urls.GET_PEERS.value
     querystring = {
         "symbol": symbol
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 

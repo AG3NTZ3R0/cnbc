@@ -1,5 +1,7 @@
 import requests
 
+from constants.urls import Urls
+
 
 def list_trending_news(count: str, api_key: str):
     """
@@ -10,13 +12,13 @@ def list_trending_news(count: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/news/v2/list-trending"
+    url = Urls.LIST_TRENDING_NEWS.value
     querystring = {
         "tag": "Articles",
         "count": count
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -35,13 +37,13 @@ def list_special_reports(api_key: str, page: str = 1, page_size: str = 25, ):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/news/v2/list-special-reports"
+    url = Urls.LIST_SPECIAL_REPORTS.value
     querystring = {
         "pageSize": page_size,
         "page": page
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -61,14 +63,14 @@ def list_symbol_news(symbol: str, api_key: str, page: str = 1, page_size: str = 
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/news/v2/list-by-symbol"
+    url = Urls.LIST_SYMBOL_NEWS.value
     querystring = {
         "symbol": symbol,
         "page": page,
         "pageSize": page_size
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 

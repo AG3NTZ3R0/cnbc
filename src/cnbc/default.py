@@ -1,5 +1,7 @@
 import requests
 
+from constants.urls import Urls
+
 
 def get_metadata(api_key: str):
     """
@@ -9,9 +11,9 @@ def get_metadata(api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/get-meta-data"
+    url = Urls.GET_METADATA.value
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
@@ -29,12 +31,12 @@ def auto_complete(query: str, api_key: str):
 
     :return: API response in JSON.
     """
-    url = "https://cnbc.p.rapidapi.com/v2/auto-complete"
+    url = Urls.AUTO_COMPLETE.value
     querystring = {
         "q": query
     }
     headers = {
-        'x-rapidapi-host': "cnbc.p.rapidapi.com",
+        'x-rapidapi-host': Urls.HOST.value,
         'x-rapidapi-key': api_key
     }
 
