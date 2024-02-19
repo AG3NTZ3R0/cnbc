@@ -26,94 +26,114 @@ pip install cnbc
 import cnbc
 ```
 
-### Default
+## APIWrapper
+The APIWrapper class is the main class of the package. It is used to make requests to the CNBC API.
 
+### Initialization
+To initialize the APIWrapper, you need to provide your API key and the endpoint you want to use. The available endpoints are defined in the `Endpoints` class.
+```python
+from cnbc.api_wrapper import APIWrapper
+from cnbc.constants.endpoints import Endpoints
+
+endpoint = APIWrapper(
+    api_key='YOUR_API_KEY',
+    endpoint=Endpoints.GET_METADATA
+)
+```
+#### Endpoint Parameters
+A majority of the endpoints require parameters. There is an additional step in this scenario.
+```python
+from cnbc.api_wrapper import APIWrapper
+from cnbc.constants.endpoints import Endpoints
+
+endpoint = APIWrapper(
+    api_key='YOUR_API_KEY',
+    endpoint=Endpoints.GET_FUNDAMENTALS
+)
+
+# Set the parameters for the request
+endpoint_params = endpoint.get_params()
+endpoint_params['issue_ids'] = '123,459,789'
+endpoint.set_params(endpoint_params)
+```
+
+### API Request
+To make a request to the CNBC API, use the `request` method. This method returns the JSON response from the API.
+```python
+json_resp = endpoint.request()
+```
+
+### Endpoints
+
+#### GET_METADATA
 Get metadata that supports other endpoints.
-```python
-json_resp = cnbc.get_metadata(api_key='YOUR_API_KEY')
-```
 
+#### AUTO_COMPLETE
 Get auto complete suggestions by term or phrase.
-```python
-json_resp = cnbc.auto_complete(query='tesla',
-                               api_key='YOUR_API_KEY')
-```
+##### Parameters
+- `q`: The term or phrase for which to get auto complete suggestions.
 
-### Symbol
-
-Generate image of earnings chart of specific stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_earnings_chart(issue_id='36276',
-                                    num_of_years='3',
-                                    api_key='YOUR_API_KEY')
-```
-
-Get summary information of stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_profile(issue_id='36276',
-                             api_key='YOUR_API_KEY')
-```
-
-Get raw data to draw price chart of stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_chart(issue_id='36276',
-                           interval='1d',
-                           api_key='YOUR_API_KEY')
-```
-
-Get issue_id from specific symbol.
-```python
-json_resp = cnbc.translate(symbol='TSLA',
-                           api_key='YOUR_API_KEY')
-```
-
-Get summary information of stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_summary(issue_ids='36276,24812378',
-                             api_key='YOUR_API_KEY')
-```
-
-Get fundamental information of stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_fundamentals(issue_ids='36276,24812378',
-                                  api_key='YOUR_API_KEY')
-```
-
-Generate image of price line chart of specific stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_priceline_chart(issue_id='24812378',
-                                     num_of_days='1',
-                                     api_key='YOUR_API_KEY')
-```
-
-Get peers relating to stock quote, index, exchange, etc.
-```python
-json_resp = cnbc.get_peers(symbol='36276',
-                           api_key='YOUR_API_KEY')
-```
-
-### Market
-
+#### LIST_INDICES
 List all available indices.
-```python
-json_resp = cnbc.list_indices(api_key='YOUR_API_KEY')
-```
 
-### News
-
+#### LIST_TRENDING_NEWS
 List trending news.
-```python
-json_resp = cnbc.list_trending_news(count='25',
-                                    api_key='YOUR_API_KEY')
-```
+##### Parameters
+- `count`: The number of trending news to list.
+- `tag` (optional): The tag to filter the news.
 
+#### LIST_SPECIAL_REPORTS
 List special reports.
-```python
-json_resp = cnbc.list_special_reports(api_key='YOUR_API_KEY')
-```
+##### Parameters
+- `pageSize`: The number of items per page.
+- `page`: The page number.
 
+#### LIST_SYMBOL_NEWS
 List latest news by symbol name.
-```python
-json_resp = cnbc.list_symbol_news(symbol='AAPL',
-                                  api_key='YOUR_API_KEY')
-```
+##### Parameters
+- `symbol`: The specific symbol to get news for.
+- `pageSize`: The number of items per page.
+- `page`: The page number.
+
+#### GET_EARNINGS_CHART
+Generate image of earnings chart of specific stock quote, index, exchange, etc.
+##### Parameters
+- `issueId`: The ID of the specific stock quote, index, exchange, etc.
+- `numberOfYears`: The number of years for which to generate the earnings chart.
+
+#### GET_PROFILE
+Get summary information of stock quote, index, exchange, etc.
+##### Parameters
+- `issueId`: The ID of the specific stock quote, index, exchange, etc.
+
+#### GET_CHART
+Get raw data to draw price chart of stock quote, index, exchange, etc.
+##### Parameters
+- `symbol`: The specific symbol to get chart data for.
+- `interval`: The interval for the price chart data.
+
+#### TRANSLATE
+Get issue ID from specific symbol.
+##### Parameters
+- `symbol`: The specific symbol to translate into an issue ID.
+
+#### GET_SUMMARY
+Get summary information of stock quote, index, exchange, etc.
+##### Parameters
+- `issueIds`: A comma-separated list of issue IDs to get summary information.
+
+#### GET_FUNDAMENTALS
+Get fundamental information of stock quote, index, exchange, etc.
+##### Parameters
+- `issueIds`: A comma-separated list of issue IDs to get fundamental information.
+
+#### GET_PRICELINE_CHART
+Generate image of price line chart of specific stock quote, index, exchange, etc.
+##### Parameters
+- `issueId`: The ID of the specific stock quote, index, exchange, etc.
+- `numberOfDays`: The number of days for which to generate the price line chart.
+
+#### GET_PEERS
+Get peers relating to stock quote, index, exchange, etc.
+##### Parameters
+- `symbol`: The specific symbol to get peers relating to it.
