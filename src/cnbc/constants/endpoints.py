@@ -1,3 +1,6 @@
+"""
+Endpoints for CNBC API.
+"""
 from enum import Enum
 
 
@@ -33,8 +36,7 @@ class Endpoints(Enum):
         """
         if self in [Endpoints.HOST, Endpoints.BASE_URL]:
             return None
-        else:
-            return self.value[0]
+        return self.value[0]
 
     def get_parameters(self) -> dict[str, str] | None:
         """
@@ -43,5 +45,4 @@ class Endpoints(Enum):
         """
         if self in [Endpoints.HOST, Endpoints.BASE_URL]:
             return None
-        else:
-            return self.value[1]
+        return self.value[1]

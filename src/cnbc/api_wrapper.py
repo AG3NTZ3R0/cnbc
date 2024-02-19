@@ -26,7 +26,7 @@ class APIWrapper:
         self.timeout: int
 
         self._endpoint, self._params = endpoint
-        self._headers = {'x-rapidapi-host': Endpoints.HOST.value, 'x-rapidapi-key': api_key}
+        self._headers = {'x-rapidapi-host': Endpoints.HOST, 'x-rapidapi-key': api_key}
         self._timeout = timeout
 
     def _safe_delete(self):

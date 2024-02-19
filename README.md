@@ -35,7 +35,7 @@ To initialize the APIWrapper, you need to provide your API key and the endpoint 
 from cnbc.api_wrapper import APIWrapper
 from cnbc.constants.endpoints import Endpoints
 
-endpoint = APIWrapper(
+api_wrapper = APIWrapper(
     api_key='YOUR_API_KEY',
     endpoint=Endpoints.GET_METADATA
 )
@@ -43,24 +43,28 @@ endpoint = APIWrapper(
 #### Endpoint Parameters
 A majority of the endpoints require parameters. There is an additional step in this scenario.
 ```python
-from cnbc.api_wrapper import APIWrapper
-from cnbc.constants.endpoints import Endpoints
-
-endpoint = APIWrapper(
-    api_key='YOUR_API_KEY',
-    endpoint=Endpoints.GET_FUNDAMENTALS
-)
-
-# Set the parameters for the request
-endpoint_params = endpoint.get_params()
-endpoint_params['issue_ids'] = '123,459,789'
-endpoint.set_params(endpoint_params)
+endpoint_params = api_wrapper.get_params()
+# Set the specific parameter(s) for the endpoint
+endpoint_params['issueIds'] = '123,459,789'
+api_wrapper.set_params(endpoint_params)
 ```
 
-### API Request
+### Request
 To make a request to the CNBC API, use the `request` method. This method returns the JSON response from the API.
 ```python
-json_resp = endpoint.request()
+json_resp = api_wrapper.request()
+```
+
+### Reuse
+You can reuse the APIWrapper instance to make multiple requests to the CNBC API. Just set the new endpoint and parameters.
+```python
+api_wrapper.set_endpoint(Endpoints.GET_SUMMARY)
+
+endpoint_params = api_wrapper.get_params()
+endpoint_params['issueIds'] = '987,654,321'
+api_wrapper.set_params(endpoint_params)
+
+json_resp = api_wrapper.request()
 ```
 
 ### Endpoints

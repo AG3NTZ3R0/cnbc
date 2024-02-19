@@ -1,3 +1,8 @@
+"""
+Custom exceptions for the API client.
+"""
+
+
 class APIRequestException(Exception):
     """
     Custom exception for API request errors.
@@ -13,7 +18,7 @@ class NetworkError(Exception):
     Custom exception for network errors.
     """
     def __init__(self):
-        super().__init__(f"Failed to connect to the server")
+        super().__init__("Failed to connect to the server")
 
 
 class InvalidParameterConfiguration(Exception):
