@@ -25,7 +25,7 @@ class APIWrapper:
         self._headers: dict[str, str]
         self.timeout: int
 
-        self._endpoint, self._params = endpoint
+        self._endpoint, self._params = endpoint.value
         self._headers = {'x-rapidapi-host': Endpoints.HOST, 'x-rapidapi-key': api_key}
         self._timeout = timeout
 
@@ -46,7 +46,7 @@ class APIWrapper:
 
     @endpoint.setter
     def endpoint(self, endpoint: Endpoints):
-        self._endpoint, self._params = endpoint
+        self._endpoint, self._params = endpoint.value
 
     @endpoint.deleter
     def endpoint(self):
