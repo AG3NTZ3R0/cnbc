@@ -3,3 +3,8 @@
 
 # PyCache
 __pycache__
+
+# Python Development Environment
+build
+src/cnbc.egg-info
+main.py

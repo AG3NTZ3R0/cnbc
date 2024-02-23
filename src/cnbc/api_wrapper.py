@@ -3,8 +3,8 @@ A module to make API requests.
 """
 import requests
 
-from src.cnbc.constants.endpoints import Endpoints
-from src.cnbc.exceptions import APIRequestException, NetworkError, InvalidParameterConfiguration
+from .endpoints import Endpoints
+from .exceptions import APIRequestException, NetworkError, InvalidParameterConfiguration
 
 
 class APIWrapper:
@@ -26,7 +26,7 @@ class APIWrapper:
         self.timeout: int
 
         self._endpoint, self._params = endpoint.value
-        self._headers = {'x-rapidapi-host': Endpoints.HOST, 'x-rapidapi-key': api_key}
+        self._headers = {'x-rapidapi-host': Endpoints.HOST.value, 'x-rapidapi-key': api_key}
         self._timeout = timeout
 
     def _safe_delete(self):
@@ -62,9 +62,12 @@ class APIWrapper:
 
     @params.setter
     def params(self, params: dict[str, str]):
-        if set(self._params.keys()) == set(params.keys()):
-            self._params.update(params)
-        else:
+        try:
+            if set(self._params.keys()) == set(params.keys()):
+                self._params.update(params)
+            else:
+                raise InvalidParameterConfiguration()
+        except AttributeError:
             raise InvalidParameterConfiguration()
 
     @params.deleter

@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 
 from src.cnbc.api_wrapper import APIWrapper
-from src.cnbc.constants.endpoints import Endpoints
+from src.cnbc.endpoints import Endpoints
 from src.cnbc.exceptions import InvalidParameterConfiguration
 
 
