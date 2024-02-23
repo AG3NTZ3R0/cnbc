@@ -23,7 +23,7 @@ class APIWrapper:
         self._endpoint: str
         self._params: dict[str, str]
         self._headers: dict[str, str]
-        self.timeout: int
+        self._timeout: int
 
         self._endpoint, self._params = endpoint.value
         self._headers = {'x-rapidapi-host': Endpoints.HOST.value, 'x-rapidapi-key': api_key}
