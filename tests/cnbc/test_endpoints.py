@@ -3,7 +3,7 @@ Test the Endpoints enum.
 """
 import unittest
 
-from src.cnbc.constants.endpoints import Endpoints
+from src.cnbc.endpoints import Endpoints
 
 
 class TestEndpoints(unittest.TestCase):
