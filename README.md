@@ -23,7 +23,7 @@ pip install cnbc
 ## Utilization
 
 ### APIWrapper
-The APIWrapper class is used to make requests to the CNBC API. <br>
+The `APIWrapper` class is used to make requests to the CNBC API. <br>
 Note: A majority of the CNBC API endpoints require parameters. These must be set by an additional instruction.
 
 ```python
@@ -36,12 +36,16 @@ api_wrapper = APIWrapper(
 # The APIWrapper class will supply the required parameters for the configured CNBC API endpoint.
 api_wrapper_params = api_wrapper.params
 api_wrapper_params['symbol'] = 'AAPL'
-api_wrapper.params = api_wrapper_params
 # The APIWrapper class will make a request to the CNBC API and return the response in JSON.
 json_response = api_wrapper.request()
 
 # The APIWrapper class can be repurposed to make multiple requests to the CNBC API.
 api_wrapper.endpoint = Endpoints.GET_SUMMARY
-api_wrapper.params = {'issueIds': json_response['issueId']}
+api_wrapper_params = api_wrapper.params
+api_wrapper_params['issueIds'] = json_response['issueId']
 json_response = api_wrapper.request()
 ```
+
+#### Translate Endpoint
+A majority of the CNBC API endpoints require an `issueId` or `issueIds` parameter. The translate endpoint is used to convert a symbol to an issueId. <br>
+Note: The `APIWrapper` class contains a translation table which can be loaded and saved to a file to reduce the number of requests to the CNBC API.
