@@ -26,4 +26,4 @@ class InvalidParameterConfiguration(Exception):
     Custom exception for invalid parameter configuration.
     """
     def __init__(self):
-        super().__init__("The supplied parameters are incompatible with the required parameters")
+        super().__init__("The supplied parameters are incompatible with the required parameters.")

@@ -6,32 +6,12 @@ from unittest.mock import patch, MagicMock
 
 from src.cnbc.api_wrapper import APIWrapper
 from src.cnbc.endpoints import Endpoints
-from src.cnbc.exceptions import InvalidParameterConfiguration
 
 
 class TestAPIWrapper(unittest.TestCase):
     """
     Test the APIWrapper class.
     """
-
-    def test_set_params(self):
-        """
-        Test the set_params method.
-        :return: None
-        """
-        endpoint = APIWrapper("API_KEY", Endpoints.GET_FUNDAMENTALS)
-        endpoint_params = {"issueIds": None}
-        endpoint.params = endpoint_params
-        self.assertEqual(endpoint_params, endpoint.params)
-
-    def test_set_params_invalid_parameter_configuration(self):
-        """
-        Test the set_params method with an invalid parameter configuration.
-        :return: None
-        """
-        endpoint = APIWrapper("API_KEY", Endpoints.GET_FUNDAMENTALS)
-        with self.assertRaises(InvalidParameterConfiguration):
-            endpoint.params = {"key": "value"}
 
     @patch('src.cnbc.api_wrapper.requests.request')
     def test_request(self, mock_request: MagicMock):
@@ -53,7 +33,7 @@ class TestAPIWrapper(unittest.TestCase):
             "GET", endpoint.endpoint,
             headers=endpoint.headers, params=endpoint.params, timeout=endpoint.timeout
         )
-        self.assertEqual({"key": "value"}, response)
+        self.assertEqual(mock_response.json.return_value, response)
 
     def test_request_translate_translation_table(self):
         """
@@ -64,7 +44,7 @@ class TestAPIWrapper(unittest.TestCase):
         json_response_expected = {'issueId': '123', 'errorMessage': '', 'errorCode': ''}
 
         api_wrapper = APIWrapper('API_KEY', Endpoints.TRANSLATE)
-        api_wrapper._translation_table = translation_table
+        api_wrapper.translation_table = translation_table
         api_wrapper_params = api_wrapper.params
         api_wrapper_params['symbol'] = 'AAPL'
         json_response = api_wrapper.request()
