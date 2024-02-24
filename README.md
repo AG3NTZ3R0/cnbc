@@ -47,5 +47,5 @@ json_response = api_wrapper.request()
 ```
 
 #### Translate Endpoint
-A majority of the CNBC API endpoints require an `issueId` or `issueIds` parameter. The translate endpoint is used to convert a symbol to an issueId. <br>
+A majority of the CNBC API endpoints require an `issueId` or `issueIds` parameter. The translate endpoint is used to convert a symbol to an `issueId`. <br>
 Note: The `APIWrapper` class contains a translation table which can be loaded and saved to a file to reduce the number of requests to the CNBC API.
