@@ -5,7 +5,7 @@ import json
 import requests
 
 from .endpoints import Endpoints
-from .exceptions import APIRequestException, NetworkError, InvalidParameterConfiguration
+from .exceptions import APIRequestException, NetworkError
 
 
 class APIWrapper:
@@ -22,24 +22,17 @@ class APIWrapper:
         :param timeout: The timeout of the API request.
         """
         self._endpoint: str
-        self._params: dict[str, str]
+        self._params: Endpoints.Parameters
         self._headers: dict[str, str]
         self._timeout: int
 
-        self._translate_table: dict[str, str]
+        self._translation_table: dict[str, str]
 
         self._endpoint, self._params = endpoint.value
         self._headers = {'x-rapidapi-host': Endpoints.HOST.value, 'x-rapidapi-key': api_key}
         self._timeout = timeout
 
         self._translation_table = {}
-
-    def _safe_delete(self):
-        """
-        Safely delete the attributes.
-        """
-        del self._endpoint
-        del self._params
 
     @property
     def endpoint(self):
@@ -55,7 +48,8 @@ class APIWrapper:
 
     @endpoint.deleter
     def endpoint(self):
-        self._safe_delete()
+        del self._endpoint
+        del self._params
 
     @property
     def params(self):
@@ -64,21 +58,6 @@ class APIWrapper:
         :return: The parameters of the API request.
         """
         return self._params
-
-    @params.setter
-    def params(self, params: dict[str, str]):
-        try:
-            # Update the parameters if the input parameters match the endpoint parameters.
-            if set(self._params.keys()) == set(params.keys()):
-                self._params.update(params)
-            else:
-                raise InvalidParameterConfiguration()
-        except AttributeError:
-            raise InvalidParameterConfiguration()
-
-    @params.deleter
-    def params(self):
-        self._safe_delete()
 
     @property
     def headers(self):
@@ -134,7 +113,7 @@ class APIWrapper:
         :param file_path: The file path of the translation table.
         :return: None
         """
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             self._translation_table = json.load(file)
 
     def translation_table_save(self, file_path: str):
@@ -143,7 +122,7 @@ class APIWrapper:
         :param file_path: The file path of the translation table.
         :return: None
         """
-        with open(file_path, "w") as file:
+        with open(file_path, "w", encoding="utf-8") as file:
             json.dump(self._translation_table, file)
 
     def request(self) -> dict:
@@ -154,17 +133,19 @@ class APIWrapper:
         # If the endpoint is the translate endpoint, then check if the symbol is in the translation table.
         if self._endpoint == Endpoints.TRANSLATE.get_endpoint():
             # If the symbol is in the translation table, then return a faux JSON response.
-            if issueId := self._translation_table.get(self._params['symbol']):
-                return {'issueId': issueId, 'errorMessage': '', 'errorCode': ''}
+            if issue_id := self._translation_table.get(self._params['symbol']):
+                return {'issueId': issue_id, 'errorMessage': '', 'errorCode': ''}
 
         with requests.request("GET", self._endpoint,
                               headers=self._headers, params=self._params, timeout=self._timeout) as response:
             try:
                 response.raise_for_status()
                 response_json = response.json()
+
                 # If the endpoint is the translate endpoint, then update the translation table.
                 if self._endpoint == Endpoints.TRANSLATE.get_endpoint():
                     self._translation_table[self._params['symbol']] = response_json['issueId']
+
                 return response_json
             except requests.exceptions.HTTPError as e:
                 raise APIRequestException(response.status_code, response.text) from e
