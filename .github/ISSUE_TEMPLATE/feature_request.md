@@ -1,20 +1,19 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
+name: Feature Request
+about: An issue used to suggest an idea for this project.
+title: '[FEAT] '
+labels: feature
 assignees: ''
-
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### Overview
+Is your feature request related to a problem? Please describe the problem.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+### Proposed Solution
+A clear and concise description of a solution.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+### Alternative Solution
+A clear and concise description of an alternative solution you've considered.
 
-**Additional context**
+### Additional Context
 Add any other context or screenshots about the feature request here.
