@@ -29,11 +29,8 @@ Thank you for considering contributing to CNBC. We're thrilled you're here and w
     ```bash
     git checkout -b name-of-your-branch
     ```
-2. Make your changes. Add tests (w/ `unittest`) if you're adding code, and make sure all tests pass.
-3. Install and test the package locally:
-    ```bash
-    pip install .
-    ```
+2. Make your changes. Add tests if you're adding code, and make sure all tests pass.
+3. Install the package locally and ensure the package functions properly.
 4. Follow the coding standards and guidelines described in the next section.
 
 ## Coding Standards
