@@ -49,7 +49,7 @@ class Endpoints(Enum):
     # Symbol
     GET_EARNINGS_CHART: tuple[str, Parameters] = (f"{BASE_URL}/symbols/get-earnings-chart", Parameters({"issueId": None, "numberOfYears": None}))
     GET_PROFILE: tuple[str, Parameters] = (f"{BASE_URL}/symbols/get-profile", Parameters({"issueId": None}))
-    GET_CHART: tuple[str, Parameters] = (f"{BASE_URL}/symbols/get-chart", Parameters({"symbol": None, "interval": None}))
+    GET_CHART: tuple[str, Parameters] = (f"{BASE_URL}/symbols/v2/get-chart", Parameters({"symbol": None, "interval": None}))
     TRANSLATE: tuple[str, Parameters] = (f"{BASE_URL}/symbols/translate", Parameters({"symbol": None}))
     GET_SUMMARY: tuple[str, Parameters] = (f"{BASE_URL}/symbols/get-summary", Parameters({"issueIds": None}))
     GET_FUNDAMENTALS: tuple[str, Parameters] = (f"{BASE_URL}/symbols/get-fundamentals", Parameters({"issueIds": None}))
